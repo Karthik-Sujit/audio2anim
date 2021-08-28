@@ -126,3 +126,6 @@ dmypy.json
 # workspace files
 .vscode/
 .idea/
+
+# data/ misc
+data/
