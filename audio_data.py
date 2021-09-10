@@ -1,24 +1,30 @@
 # %% [markdown]
-# """
-# # Understanding Audio data
+"""
+# Understanding Audio data
 
-# # Short Time Fourier Transform
+# Short Time Fourier Transform
 
-# Take small time sections of the input Amplitude waveform in time domain and perform FFT to obtain a freq vs time spectrogram.
+Take small time sections of the input Amplitude waveform in time domain and perform FFT to obtain a freq vs time spectrogram.
 
-# Repeat unitil the end of the input set is reached.
+Repeat unitil the end of the input set is reached.
 
-# # We take spectrogram as the input layer for the DL model
+# We take spectrogram as the input layer for the DL model
 
-# # Mel Frequency Cepstral Coefficients (MFCCs)
+# Mel Frequency Cepstral Coefficients (MFCCs)
 
-# They capture the timbral/textural aspects of the sound.
-# Frequency domain feature.
-# Approximate the human auditory system.
-# 13-40 Coefficients.
-# Calculated at each frame.
-# Used for Speech Recognition, Music Genre classification and Musical Instrument classification
-# """
+They capture the timbral/textural aspects of the sound.
+Frequency domain feature.
+Approximate the human auditory system.
+13-40 Coefficients.
+Calculated at each frame.
+Used for Speech Recognition, Music Genre classification and Musical Instrument classification
+"""
+# %% [markdown]
+"""
+Importing necessary libraries
+"""
+# %%
+# data from https://www.kaggle.com/andradaolteanu/gtzan-dataset-music-genre-classification
 
 # %%
 import librosa
@@ -44,8 +50,8 @@ fft = np.fft.fft(signal)
 magnitude = np.abs(fft)
 frequency = np.linspace(0, sr, len(magnitude))
 
-left_frequency = frequency[:int(len(frequency)/2)]
-left_magnitude = magnitude[:int(len(magnitude)/2)]
+left_frequency = frequency[: int(len(frequency) / 2)]
+left_magnitude = magnitude[: int(len(magnitude) / 2)]
 
 # %%
 # plt.plot(left_frequency, left_magnitude)
@@ -72,8 +78,7 @@ librosa.display.specshow(log_spectrogram, sr=sr, hop_length=hop_length)
 
 # %%
 # MFCCs
-MFCCs = librosa.feature.mfcc(
-    signal, n_fft=n_fft, hop_length=hop_length, n_mfcc=13)
+MFCCs = librosa.feature.mfcc(signal, n_fft=n_fft, hop_length=hop_length, n_mfcc=13)
 librosa.display.specshow(MFCCs, sr=sr, hop_length=hop_length)
 plt.xlabel("Time")
 plt.ylabel("MFCCs")
