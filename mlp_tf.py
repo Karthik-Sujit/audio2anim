@@ -32,12 +32,13 @@ def generate_dataset(num_samples, test_size=0.33):
 
     # build inputs/targets for sum operation: y[0][0] = x[0][0] + x[0][1]
     x = np.array([[random() / 2 for _ in range(2)]
-                 for _ in range(num_samples)])
+                  for _ in range(num_samples)])
     y = np.array([[i[0] + i[1]] for i in x])
 
     # split dataset into test and training sets
-    x_train, x_test, y_train, y_test = train_test_split(
-        x, y, test_size=test_size)
+    x_train, x_test, y_train, y_test = train_test_split(x,
+                                                        y,
+                                                        test_size=test_size)
 
     return x_train, x_test, y_train, y_test
 
@@ -48,12 +49,10 @@ x_train, x_test, y_train, y_test = generate_dataset(5000, 0.3)
 
 # %%
 # build model with 3 layers: 2 -> 5 -> 1
-model = tf.keras.models.Sequential(
-    [
-        tf.keras.layers.Dense(5, input_dim=2, activation="sigmoid"),
-        tf.keras.layers.Dense(1, activation="sigmoid"),
-    ]
-)
+model = tf.keras.models.Sequential([
+    tf.keras.layers.Dense(5, input_dim=2, activation="sigmoid"),
+    tf.keras.layers.Dense(1, activation="sigmoid"),
+])
 
 # %%
 # choose optimizer
