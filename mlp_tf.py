@@ -12,7 +12,8 @@ def generate_dataset(num_samples, test_size=0.33):
 
     Args:
         num_samples (int): Num of total samples in dataset
-        test_size (float, optional): Ratio of output to num_samples. Defaults to 0.33.
+        test_size (float, optional): ratio of output/num_samples.
+            Defaults to 0.33.
 
     Returns:
         x_train: 2d array with input data for training

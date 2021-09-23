@@ -1,10 +1,17 @@
+# %%
+import librosa
+import librosa.display
+import matplotlib.pyplot as plt
+import numpy as np
+
 # %% [markdown]
 """
 # Understanding Audio data
 
 # Short Time Fourier Transform
 
-Take small time sections of the input Amplitude waveform in time domain and perform FFT to obtain a freq vs time spectrogram.
+Take small time sections of the input Amplitude waveform in time domain
+and perform FFT to obtain a freq vs time spectrogram.
 
 Repeat unitil the end of the input set is reached.
 
@@ -17,23 +24,16 @@ Frequency domain feature.
 Approximate the human auditory system.
 13-40 Coefficients.
 Calculated at each frame.
-Used for Speech Recognition, Music Genre classification and Musical Instrument classification
+Used for Speech Recognition, Music Genre classification and Musical Instrument
+classification
 """
 # %% [markdown]
 """
 Importing necessary libraries
 """
 # %%
-# data from https://www.kaggle.com/andradaolteanu/gtzan-dataset-music-genre-classification
-
-# %%
-import librosa
-import librosa.display
-import matplotlib.pyplot as plt
-import numpy as np
-
-# %%
-# data from https://www.kaggle.com/andradaolteanu/gtzan-dataset-music-genre-classification
+# data from
+# https://www.kaggle.com/andradaolteanu/gtzan-dataset-music-genre-classification
 file = "data/genres_original/blues/blues.00000.wav"
 
 # waveform
