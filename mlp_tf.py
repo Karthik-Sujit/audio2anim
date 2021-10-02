@@ -1,8 +1,9 @@
 # %%
+from random import random
+
+import numpy as np
 import tensorflow as tf
 from sklearn.model_selection import train_test_split
-import numpy as np
-from random import random
 
 # %%
 
@@ -21,15 +22,6 @@ def generate_dataset(num_samples, test_size=0.33):
         y_train: 2d array with target data for training
         y_test: 2d array with target data for testing
     """
-
-    # """Generates train/test data for sum operation
-    # :param num_samples (int): Num of total samples in dataset
-    # :param test_size (int): Ratio of num_samples used as test set
-    # :return x_train (ndarray): 2d array with input data for training
-    # :return x_test (ndarray): 2d array with input data for testing
-    # :return y_train (ndarray): 2d array with target data for training
-    # :return y_test (ndarray): 2d array with target data for testing
-    # """
 
     # build inputs/targets for sum operation: y[0][0] = x[0][0] + x[0][1]
     x = np.array([[random() / 2 for _ in range(2)]
