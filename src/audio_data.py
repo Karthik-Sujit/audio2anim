@@ -34,7 +34,7 @@ Importing necessary libraries
 # %%
 # data from
 # https://www.kaggle.com/andradaolteanu/gtzan-dataset-music-genre-classification
-file = "data/genres_original/blues/blues.00000.wav"
+file = "../data/genres_original/blues/blues.00000.wav"
 
 # waveform
 signal, sr = librosa.load(file, sr=22050)  # sr*T -> 22050*30
