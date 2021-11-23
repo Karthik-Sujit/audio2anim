@@ -43,7 +43,7 @@ def save_mfcc(dataset_path,
         if dirpath is not dataset_path:
 
             # save genre label (i.e., sub-folder name) in the mapping
-            semantic_label = dirpath.split("/")[-1]
+            semantic_label = dirpath.split("\\")[-1]
             data["mapping"].append(semantic_label)
             print("\nProcessing: {}".format(semantic_label))
 
