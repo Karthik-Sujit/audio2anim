@@ -1,4 +1,3 @@
-# %%
 import json
 
 import matplotlib.pyplot as plt
@@ -6,11 +5,9 @@ import numpy as np
 import tensorflow.keras as keras
 from sklearn.model_selection import train_test_split
 
-# %%
 DATASET_PATH = '../data/data.json'
 
 
-# %%
 def load_data(dataset_path):
     """
     Loads the dataset from the given path.
@@ -30,7 +27,6 @@ def load_data(dataset_path):
     return inputs, targets
 
 
-# %%
 def plot_history(history):
 
     # create figure and axes for plotting
@@ -53,31 +49,43 @@ def plot_history(history):
     plt.show()
 
 
-# %%
 # load data
 inputs, targets = load_data(DATASET_PATH)
 
-# %%
 # split data into training and testing sets
 inputs_train, inputs_test, targets_train, targets_test = train_test_split(
     inputs, targets, test_size=0.3)
 
-# %%
 # build the network architecture
 model = keras.Sequential([
     # input layer
     keras.layers.Flatten(input_shape=(inputs.shape[1], inputs.shape[2])),
 
-    # hidden layers
-    keras.layers.Dense(512, activation='relu'),
-    keras.layers.Dense(256, activation='relu'),
-    keras.layers.Dense(64, activation='relu'),
+    # hidden layer #1
+    keras.layers.Dense(512,
+                       activation='relu',
+                       kernel_regularizer=keras.regularizers.l2(0.001)),
+    # dropout layer
+    keras.layers.Dropout(0.3),
+
+    # hidden layer #2
+    keras.layers.Dense(256,
+                       activation='relu',
+                       kernel_regularizer=keras.regularizers.l2(0.001)),
+    # dropout layer
+    keras.layers.Dropout(0.3),
+
+    # hidden layer #3
+    keras.layers.Dense(64,
+                       activation='relu',
+                       kernel_regularizer=keras.regularizers.l2(0.001)),
+    # dropout layer
+    keras.layers.Dropout(0.3),
 
     # output layer
     keras.layers.Dense(10, activation='softmax')
 ])
 
-# %%
 # compile network
 optimizer = keras.optimizers.Adam(learning_rate=0.0001)
 model.compile(optimizer=optimizer,
@@ -87,16 +95,11 @@ model.compile(optimizer=optimizer,
 # %%
 model.summary()
 
-# %%
 history = model.fit(inputs_train,
                     targets_train,
                     validation_data=(inputs_test, targets_test),
                     epochs=50,
                     batch_size=32)
-# OVERFITTING!
 
-# %%
 # plot history
 plot_history(history)
-
-# %%
